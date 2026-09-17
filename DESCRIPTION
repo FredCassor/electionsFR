@@ -7,7 +7,12 @@ Authors@R:
 Description: Offers a set of functions to easily download and clean French
     electoral data from the public archive data-gouv.fr.
 License: GPL (>= 3)
+Imports: 
+    readr,
+    utils
 Config/roxygen2/version: 8.1.0
 Encoding: UTF-8
 Language: fr
 Roxygen: list(markdown = TRUE)
+URL: https://github.com/FredCassor/electionFR
+BugReports: https://github.com/FredCassor/electionFR/issues
