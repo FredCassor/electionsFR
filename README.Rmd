@@ -36,6 +36,16 @@ This is a basic example which shows you how to get the datasets ressources relea
 ```{r example}
 library(electionFR)
 data("ressources")
-head(ressources)
+colnames(ressources)
+```
+
+This is an example which shows you how to access datasets which refer to the Presidential election in 2002:
+```{r president, message=FALSE, warning=FALSE}
+library(dplyr)
+ressources |> 
+   filter(grepl(paste(c("élection","election"),"présidentielle",
+                      sep=" ", collapse = "|"), tolower(dataset.title))) |> 
+   filter(annee == 2002) |> 
+   select(dataset.title, downloads)
 ```
 

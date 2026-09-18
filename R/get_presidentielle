@@ -17,8 +17,7 @@
 #' get_presidentielle(df, 2022)
 get_presidentielle = function(data, year){
    wdir = paste("data-raw/presidentielle", year)
-   if (!dir.exists(wdir))
-      dir.create(wdir)
+   if (!dir.exists(wdir)) dir.create(wdir)
    df = data |>
       dplyr::filter(grepl(paste(c("élection","election"),"présidentielle",
                                 sep=" ", collapse = "|"),

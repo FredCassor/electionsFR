@@ -29,21 +29,40 @@ online:
 ``` r
 library(electionFR)
 data("ressources")
-head(ressources)
-#> # A tibble: 6 × 30
-#>   dataset.id         dataset.title dataset.slug dataset.url dataset.organization
-#>   <chr>              <chr>         <chr>        <chr>       <chr>               
-#> 1 6aa4644c63519c97b… Élections sé… elections-s… https://ww… Ministère de l'inté…
-#> 2 6aa4644c63519c97b… Élections sé… elections-s… https://ww… Ministère de l'inté…
-#> 3 6aa184a81686fc48d… Élections sé… elections-s… https://ww… Ministère de l'inté…
-#> 4 6aa183dbcbcae583a… Elections sé… elections-s… https://ww… Ministère de l'inté…
-#> 5 6a884f10fa89847e4… Stock et flu… stock-et-fl… https://ww… Ministère de l'inté…
-#> 6 6a884f10fa89847e4… Stock et flu… stock-et-fl… https://ww… Ministère de l'inté…
-#> # ℹ 25 more variables: dataset.organization_id <chr>, dataset.license <chr>,
-#> #   dataset.private <lgl>, dataset.archived <lgl>, id <chr>, url <chr>,
-#> #   title <chr>, description <chr>, filetype <chr>, type <chr>, format <chr>,
-#> #   mime <chr>, filesize <dbl>, checksum.type <chr>, checksum.value <chr>,
-#> #   created_at <dttm>, modified <dttm>, downloads <dbl>,
-#> #   harvest.issued_at <lgl>, harvest.modified_at <lgl>,
-#> #   harvest.last_update <lgl>, schema_name <chr>, schema_version <chr>, …
+colnames(ressources)
+#>  [1] "dataset.id"              "dataset.title"          
+#>  [3] "dataset.slug"            "dataset.url"            
+#>  [5] "dataset.organization"    "dataset.organization_id"
+#>  [7] "dataset.license"         "dataset.private"        
+#>  [9] "dataset.archived"        "id"                     
+#> [11] "url"                     "title"                  
+#> [13] "description"             "filetype"               
+#> [15] "type"                    "format"                 
+#> [17] "mime"                    "filesize"               
+#> [19] "checksum.type"           "checksum.value"         
+#> [21] "created_at"              "modified"               
+#> [23] "downloads"               "harvest.issued_at"      
+#> [25] "harvest.modified_at"     "harvest.last_update"    
+#> [27] "schema_name"             "schema_version"         
+#> [29] "preview_url"             "extras"                 
+#> [31] "annee"
+```
+
+This is an example which shows you how to access datasets which refer to
+the Presidential election in 2002:
+
+``` r
+library(dplyr)
+ressources |> 
+   filter(grepl(paste(c("élection","election"),"présidentielle",
+                      sep=" ", collapse = "|"), tolower(dataset.title))) |> 
+   filter(annee == 2002) |> 
+   select(dataset.title, downloads)
+#> # A tibble: 4 × 2
+#>   dataset.title                                                downloads
+#>   <chr>                                                            <dbl>
+#> 1 Election présidentielle 2002 – Résultats par bureaux de vote      1395
+#> 2 Election présidentielle 2002 - Résultats                           394
+#> 3 Election présidentielle 2002 - Résultats                           397
+#> 4 Election présidentielle 2002 - Résultats                           540
 ```

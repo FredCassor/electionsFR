@@ -12,6 +12,9 @@
 #'
 #' @importFrom readr read_csv2
 #' @importFrom utils download.file
+#' @importFrom stringr str_extract
+#' @importFrom rlang .data
+#' @import dplyr
 #' @export
 #'
 #' @examples
@@ -40,6 +43,8 @@ get_ressources = function(url = NULL, encoding = "UTF-8", dest_dir = "data-raw")
                            locale = readr::locale(encoding = encoding),
                            col_types = readr::cols()
    )
+   data = data |>
+      dplyr::mutate(annee = stringr::str_extract(.data$dataset.title, "[0-9]{4}")) |>
+      dplyr::mutate(annee = readr::parse_number(.data$annee))
    data
 }
-# df = get_ressources()

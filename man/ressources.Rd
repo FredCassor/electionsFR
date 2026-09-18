@@ -37,11 +37,12 @@ A data frame with 30 columns. Each row represents a single dataset:
 \item{schema_version}{}
 \item{preview_url}{}
 \item{extras}{}
+\item{annee}{Reference year of dataset}
 }
 }
 \source{
 \itemize{
-\item \href{https://www.data.gouv.fr/fr/organizations/ministere-de-l-interieur/}{public data archive of the French Ministry of the Interior}
+\item \href{https://www.data.gouv.fr/fr/organizations/ministere-de-l-interieur/}{Public data archive of the French Ministry of the Interior}
 }
 }
 \usage{
