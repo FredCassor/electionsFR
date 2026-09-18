@@ -3,3 +3,6 @@
 ^dev_history\.R$
 ^LICENSE\.md$
 ^dev$
+^R/get_presidentielle$
+^README\.Rmd$
+^data-raw$
