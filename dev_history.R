@@ -20,7 +20,11 @@ devtools::load_all()
 
 usethis::use_data_raw("ressources")
 
-usethis::use_r("data.R")
-
 usethis::use_r("get_ressources")
 usethis::use_r("get_presidentielle")
+
+usethis::use_package("dplyr")
+usethis::use_package("readr")
+usethis::use_package("stringr")
+usethis::use_package("stringi")
+usethis::use_package("purrr")

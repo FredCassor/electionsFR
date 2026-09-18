@@ -2,6 +2,9 @@
 #'
 #' The data found in the French Ministry of the Interior's public data archive datagouv.
 #'
+#' @docType data
+#' @keywords dataset
+#'
 #' @format
 #' A data frame with 30 columns. Each row represents a single dataset:
 #' \describe{

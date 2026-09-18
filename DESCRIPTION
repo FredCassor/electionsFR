@@ -13,8 +13,10 @@ Depends:
     R (>= 3.5)
 Imports: 
     dplyr,
+    purrr,
     readr,
     rlang,
+    stringi,
     stringr,
     utils
 Config/roxygen2/version: 8.1.0
