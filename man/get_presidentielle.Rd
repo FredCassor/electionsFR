@@ -5,12 +5,14 @@
 \alias{get_presidentielle}
 \title{Get data on presidential election}
 \usage{
-get_presidentielle(year, encoding = "UTF-8")
+get_presidentielle(year, encoding = "UTF-8", exdir = ".")
 }
 \arguments{
 \item{year}{Election year (\code{integer}).}
 
 \item{encoding}{Data original encoding (defaults to 'UTF-8')}
+
+\item{exdir}{Path to the directory}
 }
 \value{
 None (print out the number of downloaded files)

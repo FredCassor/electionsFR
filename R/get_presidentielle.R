@@ -4,6 +4,7 @@
 #'
 #' @param year Election year (\code{integer}).
 #' @param encoding Data original encoding (defaults to 'UTF-8')
+#' @param exdir Path to the directory
 #'
 #' @return None (print out the number of downloaded files)
 #'
@@ -19,8 +20,8 @@
 #' \dontrun{
 #' get_presidentielle(2002)
 #' }
-get_presidentielle = function(year, encoding = "UTF-8"){
-   wdir = paste("./election presidentielle", year)
+get_presidentielle = function(year, encoding = "UTF-8", exdir = "."){
+   wdir = file.path(exdir, paste("election presidentielle", year))
    if (!dir.exists(wdir)) dir.create(wdir)
    #setwd(wdir)
 
