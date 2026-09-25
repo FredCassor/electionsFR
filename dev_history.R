@@ -22,6 +22,8 @@ devtools::load_all()
 usethis::use_r("utils")
 # Gestion d'un fichier data dans data-raw/
 usethis::use_data_raw("ressources")
+
+usethis::use_version()
 # Ajout des fonctions dans R/
 usethis::use_r("get_ressources")
 usethis::use_r("get_presidentielle")
