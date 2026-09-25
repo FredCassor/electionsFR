@@ -38,8 +38,8 @@
 #'    \item{schema_version}{}
 #'    \item{preview_url}{}
 #'    \item{extras}{}
-#'    \item{annee}{Reference year of dataset}
+#'    \item{annee}{Reference year}
 #' }
 #' @source
-#' * [Public data archive of the French Ministry of the Interior](https://www.data.gouv.fr/fr/organizations/ministere-de-l-interieur/)
+#' * \url{https://www.data.gouv.fr/fr/organizations/ministere-de-l-interieur/}
 "ressources"

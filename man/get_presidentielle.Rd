@@ -5,12 +5,12 @@
 \alias{get_presidentielle}
 \title{Get data on presidential election}
 \usage{
-get_presidentielle(data, year)
+get_presidentielle(year, encoding = "UTF-8")
 }
 \arguments{
-\item{data}{a data frame.}
-
 \item{year}{Election year (\code{integer}).}
+
+\item{encoding}{Data original encoding (defaults to 'UTF-8')}
 }
 \value{
 None (print out the number of downloaded files)
@@ -20,7 +20,6 @@ None (print out the number of downloaded files)
 }
 \examples{
 \dontrun{
-data("ressources")
-get_presidentielle(ressources, 2002)
+get_presidentielle(2002)
 }
 }

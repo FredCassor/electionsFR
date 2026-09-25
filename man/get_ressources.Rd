@@ -4,20 +4,16 @@
 \alias{get_ressources}
 \title{Download data ressources on the French Ministry of the Interior's datasets}
 \usage{
-get_ressources(url = NULL, encoding = "UTF-8", dest_dir = "data-raw")
+get_ressources(encoding = "UTF-8")
 }
 \arguments{
-\item{url}{Url where to get datasets ressources}
-
-\item{encoding}{Data original encoding (defaults to 'utf-8')}
-
-\item{dest_dir}{Path or directory of downloaded file}
+\item{encoding}{Data original encoding (defaults to 'UTF-8')}
 }
 \value{
 a data frame
 }
 \description{
-\code{get_ressources()} downloads a file with references on datasets available on the public archive. The function returns data frame where each observation corresponds to a data ressource type.
+The function downloads a file with references on datasets available on the public archive. The function returns data frame where each observation corresponds to a data ressource type.
 }
 \examples{
 \dontrun{
