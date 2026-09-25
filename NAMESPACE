@@ -3,6 +3,7 @@
 export(get_presidentielle)
 export(get_ressources)
 import(dplyr)
+import(utils)
 importFrom(purrr,pwalk)
 importFrom(readr,read_csv2)
 importFrom(rlang,.data)

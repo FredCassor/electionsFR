@@ -1,23 +1,24 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# electionFR
+# electionsFR
 
 <!-- badges: start -->
 
 <!-- badges: end -->
 
-The goal of electionFR is to offer a set of functions to easily download
-and clean French electoral data from the public archive data-gouv.fr.
+The goal of electionsFR is to offer a set of functions to easily
+download and clean French electoral data from the public archive
+data-gouv.fr .
 
 ## Installation
 
-You can install the development version of electionFR from
+You can install the development version of electionsFR from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
-pak::pak("FredCassor/electionFR")
+pak::pak("FredCassor/electionsFR")
 ```
 
 ## Example
@@ -27,7 +28,7 @@ ressources released by the French Ministry of the Interior, available
 online:
 
 ``` r
-library(electionFR)
+library(electionsFR)
 data("ressources")
 colnames(ressources)
 #>  [1] "dataset.id"              "dataset.title"          
@@ -53,16 +54,17 @@ the Presidential election in 2002:
 
 ``` r
 library(dplyr)
+library(stringi)
 ressources |> 
-   filter(grepl(paste(c("élection","election"),"présidentielle",
-                      sep=" ", collapse = "|"), tolower(dataset.title))) |> 
+   mutate(dataset_title = stri_trans_general(dataset.title, "Latin-ASCII")) |> 
+   filter(grepl("election presidentielle", dataset_title, ignore.case = TRUE)) |> 
    filter(annee == 2002) |> 
    select(dataset.title, downloads)
 #> # A tibble: 4 × 2
 #>   dataset.title                                                downloads
 #>   <chr>                                                            <dbl>
-#> 1 Election présidentielle 2002 – Résultats par bureaux de vote      1395
-#> 2 Election présidentielle 2002 - Résultats                           394
-#> 3 Election présidentielle 2002 - Résultats                           397
-#> 4 Election présidentielle 2002 - Résultats                           540
+#> 1 Election présidentielle 2002 – Résultats par bureaux de vote      1401
+#> 2 Election présidentielle 2002 - Résultats                           395
+#> 3 Election présidentielle 2002 - Résultats                           406
+#> 4 Election présidentielle 2002 - Résultats                           546
 ```

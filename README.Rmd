@@ -13,20 +13,20 @@ knitr::opts_chunk$set(
 )
 ```
 
-# electionFR
+# electionsFR
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of electionFR is to offer a set of functions to easily download and clean French electoral data from the public archive data-gouv.fr.
+The goal of electionsFR is to offer a set of functions to easily download and clean French electoral data from the public archive data-gouv.fr \url{https://www.data.gouv.fr/fr/organizations/ministere-de-l-interieur/}.
 
 ## Installation
 
-You can install the development version of electionFR from [GitHub](https://github.com/) with:
+You can install the development version of electionsFR from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("pak")
-pak::pak("FredCassor/electionFR")
+pak::pak("FredCassor/electionsFR")
 ```
 
 ## Example
@@ -34,7 +34,7 @@ pak::pak("FredCassor/electionFR")
 This is a basic example which shows you how to get the datasets ressources released by the French Ministry of the Interior, available online:
 
 ```{r example}
-library(electionFR)
+library(electionsFR)
 data("ressources")
 colnames(ressources)
 ```
@@ -42,9 +42,10 @@ colnames(ressources)
 This is an example which shows you how to access datasets which refer to the Presidential election in 2002:
 ```{r president, message=FALSE, warning=FALSE}
 library(dplyr)
+library(stringi)
 ressources |> 
-   filter(grepl(paste(c("élection","election"),"présidentielle",
-                      sep=" ", collapse = "|"), tolower(dataset.title))) |> 
+   mutate(dataset_title = stri_trans_general(dataset.title, "Latin-ASCII")) |> 
+   filter(grepl("election presidentielle", dataset_title, ignore.case = TRUE)) |> 
    filter(annee == 2002) |> 
    select(dataset.title, downloads)
 ```

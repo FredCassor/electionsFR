@@ -18,6 +18,8 @@ devtools::build_readme()
 
 devtools::load_all()
 
+usethis::use_r("utils")
+
 usethis::use_data_raw("ressources")
 
 usethis::use_r("get_ressources")
@@ -28,3 +30,5 @@ usethis::use_package("readr")
 usethis::use_package("stringr")
 usethis::use_package("stringi")
 usethis::use_package("purrr")
+
+usethis::use_r("get_legislatives")
