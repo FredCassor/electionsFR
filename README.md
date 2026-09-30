@@ -21,13 +21,25 @@ You can install the development version of electionsFR from
 pak::pak("FredCassor/electionsFR")
 ```
 
-## Example
+## Examples
 
-This is a basic example which shows you how to get access to datasets
-which refer to the Presidential election in 2002, published by the
-French Ministry of the Interior:
+### Presidential election data
+
+This is a basic example which shows you how to download datasets which
+refer to the Presidential election in 2002, published by the French
+Ministry of the Interior:
 
 ``` r
 library(electionsFR)
 get_presidentielle(2002)
+```
+
+### General elections
+
+For getting data on general elections, this is an example of downloading
+files on general elections in 2007 and saved in a the sub directory
+`elections`:
+
+``` r
+get_legislatives(2007, exdir = "elections")
 ```

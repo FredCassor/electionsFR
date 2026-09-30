@@ -3,7 +3,7 @@
 \encoding{UTF-8}
 \name{get_presidentielle}
 \alias{get_presidentielle}
-\title{Get data on presidential election}
+\title{Download electoral data on presidential election}
 \usage{
 get_presidentielle(year, encoding = "UTF-8", exdir = ".")
 }

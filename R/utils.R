@@ -8,7 +8,7 @@
 #' @import dplyr
 #' @importFrom utils download.file
 #' @importFrom rlang .data
-#' @importFrom stringr str_extract
+# @importFrom stringr str_extract
 download_ressources = function(encoding = "UTF-8") {
 
    # URL
@@ -29,6 +29,11 @@ download_ressources = function(encoding = "UTF-8") {
    data = data  %>%
       dplyr::mutate(annee = stringr::str_extract(.data$dataset.title, "[0-9]{4}"))  %>%
       dplyr::mutate(annee = readr::parse_number(.data$annee))
+   #data$annee <- NA_character_
+   #pos_annee <- regexpr("[0-9]{4}", data$dataset.title)
+   #a_match <- pos_annee != -1  # indice des correspondances trouvées
+   #data$annee[a_match] <- regmatches(data$dataset.title[a_match], pos_annee[a_match])
+   #data$annee <- as.numeric(data$annee)
    data
 }
 
