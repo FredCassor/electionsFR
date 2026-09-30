@@ -31,22 +31,9 @@ pak::pak("FredCassor/electionsFR")
 
 ## Example
 
-This is a basic example which shows you how to get the datasets ressources released by the French Ministry of the Interior, available online:
-
-```{r example}
+This is a basic example which shows you how to get access to datasets which refer to the Presidential election in 2002, published by the French Ministry of the Interior:
+```{r example, eval=FALSE}
 library(electionsFR)
-data("ressources")
-colnames(ressources)
-```
-
-This is an example which shows you how to access datasets which refer to the Presidential election in 2002:
-```{r president, message=FALSE, warning=FALSE}
-library(dplyr)
-library(stringi)
-ressources |> 
-   mutate(dataset_title = stri_trans_general(dataset.title, "Latin-ASCII")) |> 
-   filter(grepl("election presidentielle", dataset_title, ignore.case = TRUE)) |> 
-   filter(annee == 2002) |> 
-   select(dataset.title, downloads)
+get_presidentielle(2002)
 ```
 

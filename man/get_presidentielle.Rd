@@ -18,7 +18,7 @@ get_presidentielle(year, encoding = "UTF-8", exdir = ".")
 None (print out the number of downloaded files)
 }
 \description{
-\code{get_presidentielle} downloads and cleans data on presidential election for a specific year, aggregated by many different geographical levels.
+The function downloads and cleans data on presidential election for a specific year, aggregated by many different geographical levels.
 }
 \examples{
 \dontrun{

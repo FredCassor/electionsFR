@@ -33,5 +33,7 @@ usethis::use_package("readr")
 usethis::use_package("stringr")
 usethis::use_package("stringi")
 usethis::use_package("purrr")
+# Ajout des tests des fonctions
+usethis::use_test("get_presidentielle")
 
 usethis::use_r("get_legislatives")

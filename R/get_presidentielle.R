@@ -1,6 +1,6 @@
 #' Get data on presidential election
 #'
-#' \code{get_presidentielle} downloads and cleans data on presidential election for a specific year, aggregated by many different geographical levels.
+#' The function downloads and cleans data on presidential election for a specific year, aggregated by many different geographical levels.
 #'
 #' @param year Election year (\code{integer}).
 #' @param encoding Data original encoding (defaults to 'UTF-8')
@@ -21,9 +21,13 @@
 #' get_presidentielle(2002)
 #' }
 get_presidentielle = function(year, encoding = "UTF-8", exdir = "."){
+   # Check year
+   test_year_presidentielle(year)
+   # Check encoding
+   test_encoding(encoding)
+
    wdir = file.path(exdir, paste("election presidentielle", year))
    if (!dir.exists(wdir)) dir.create(wdir)
-   #setwd(wdir)
 
    message("Downloading the datasets ressources...")
    df = download_ressources(encoding = encoding)
