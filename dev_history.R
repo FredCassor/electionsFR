@@ -37,3 +37,4 @@ usethis::use_package("purrr")
 usethis::use_test("get_presidentielle")
 
 usethis::use_r("get_legislatives")
+usethis::use_r("get_municipales")

@@ -37,7 +37,7 @@ get_presidentielle(2002)
 ### General elections
 
 For getting data on general elections, this is an example of downloading
-files on general elections in 2007 and saved in a the sub directory
+files on general elections in 2007 and saved in the sub directory
 `elections`:
 
 ``` r

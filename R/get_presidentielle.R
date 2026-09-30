@@ -21,10 +21,12 @@
 #' get_presidentielle(2002)
 #' }
 get_presidentielle <- function(year, encoding = "UTF-8", exdir = "."){
-   # Check year
+   # Test year
    test_year_presidentielle(year)
-   # Check encoding
+   # Test encoding
    test_encoding(encoding)
+   # Test external directory
+   stopifnot("Invalid path for directory. Please check and try again." = identical(length(exdir), 1L))
 
    wdir = file.path(exdir, paste("election presidentielle", year))
    if (!dir.exists(wdir)) dir.create(wdir)

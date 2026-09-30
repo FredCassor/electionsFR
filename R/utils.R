@@ -45,13 +45,6 @@ test_year_presidentielle <- function(year){
 }
 
 # Tests election year inputs
-test_year_municipales <- function(year){
-
-   if(!is.numeric(year) | !length(year)==1 | !year %in% c())
-      stop("Invalid input for year. Please check the documentation and try again.")
-}
-
-# Tests election year inputs
 test_year_legislatives <- function(year){
 
    if(!is.numeric(year) | !length(year)==1 | !year %in% c(
@@ -59,6 +52,48 @@ test_year_legislatives <- function(year){
    ))
       stop("Invalid input for year. Please check the documentation and try again.")
 }
+
+# Tests election year inputs
+test_year_municipales <- function(year){
+
+   if(!is.numeric(year) | !length(year)==1 | !year %in% c(2001,2008,2014,2015,2020,2026))
+      stop("Invalid input for year. Please check the documentation and try again.")
+}
+
+# Tests election year inputs
+test_year_europeennes <- function(year){
+
+   if(!is.numeric(year) | !length(year)==1 | !year %in% c(1994,1999,2004,2009,
+                                                          2014,2019,2024))
+      stop("Invalid input for year. Please check the documentation and try again.")
+}
+
+# Tests election year inputs
+test_year_regionales <- function(year){
+
+   if(!is.numeric(year) | !length(year)==1 | !year %in% c(1998,2004,2010,2015,
+                                                          2021))
+      stop("Invalid input for year. Please check the documentation and try again.")
+}
+
+# Tests election year inputs
+test_year_departementales <- function(year){
+
+   if(!is.numeric(year) | !length(year)==1 | !year %in% c(1992,1994,1998,2001,
+                                                          2004,2008,2011,2015,
+                                                          2021))
+      stop("Invalid input for year. Please check the documentation and try again.")
+}
+
+# Tests election year inputs
+test_year_senatoriales <- function(year){
+
+   if(!is.numeric(year) | !length(year)==1 | !year %in% c(1992,1995,1998,2001,
+                                                          2004,2008,2011,2014,
+                                                          2015,2017,2023,2026))
+      stop("Invalid input for year. Please check the documentation and try again.")
+}
+
 
 # Tests electoral data encoding inputs
 test_encoding <- function(encoding){

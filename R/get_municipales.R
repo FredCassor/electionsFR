@@ -1,6 +1,6 @@
-#' Download electoral data on general elections
+#' Download electoral data on municipal elections
 #'
-#' The function downloads and cleans data on general elections for a specific year, aggregated by many different geographical levels.
+#' The function downloads and cleans data on local municipal elections for a specific year, aggregated by many different geographical levels.
 #'
 #' @param year Election year (\code{integer}).
 #' @param encoding Data original encoding (defaults to 'UTF-8')
@@ -17,31 +17,26 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_legislatives(1997)
+#' get_municipales(2008)
 #' }
-get_legislatives <- function(year, encoding = "UTF-8", exdir = "."){
+get_municipales <- function(year, encoding = "UTF-8", exdir = "."){
    # Test year
-   test_year_legislatives(year)
+   test_year_municipales(year)
    # Test encoding
    test_encoding(encoding)
    # Test external directory
    stopifnot("Invalid path for directory. Please check and try again." = identical(length(exdir), 1L))
 
-   wdir = file.path(exdir, paste("elections legislatives", year))
+   wdir = file.path(exdir, paste("elections municipales", year))
    if (!dir.exists(wdir)) dir.create(wdir)
 
    message("Downloading the datasets ressources...")
    df = download_ressources(encoding = encoding)
 
-   #df$dataset_title = iconv(df$dataset.title, from = encoding, to = "ASCII//TRANSLIT")
-   #df = df[grepl("elections legislatives", df$dataset_title, ignore.case = TRUE), ]
-   #df = df[df$annee == year, ]
-   #df$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", df$id)
-
    df = df %>%
       dplyr::mutate(dataset_title = stringi::stri_trans_general(
          .data$dataset.title, "Latin-ASCII")) %>%
-      dplyr::filter(grepl("elections legislatives", .data$dataset_title,
+      dplyr::filter(grepl("elections municipales", .data$dataset_title,
                           ignore.case = TRUE)) %>%
       dplyr::filter(.data$annee == year) %>%
       dplyr::mutate(url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/",
