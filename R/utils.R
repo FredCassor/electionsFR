@@ -93,6 +93,14 @@ test_year_departementales <- function(year){
 }
 
 # Tests election year inputs
+test_year_cantonales <- function(year){
+
+   if(!is.numeric(year) | !length(year)==1 | !year %in% c(1992,1994,1998,2001,
+                                                          2004,2008,2011))
+      stop("Invalid input for year. Please check the documentation and try again.")
+}
+
+# Tests election year inputs
 test_year_senatoriales <- function(year){
 
    if(!is.numeric(year) | !length(year)==1 | !year %in% c(1992,1995,1998,2001,
