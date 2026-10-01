@@ -54,7 +54,7 @@ get_legislatives <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
    message("Downloading electoral data...")
    df %>%
       dplyr::select(x = .data$url_stable, y = url) %>%
-      purrr::pwalk(\(x, y) {
+      purrr::pwalk(function(x, y) {
          download.file(url = x,
                        destfile = file.path(wdir, basename(y))
          )
