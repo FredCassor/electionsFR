@@ -12,6 +12,7 @@
 #' @import utils
 #' @importFrom purrr pwalk
 #' @importFrom rlang .data
+#' @export
 #'
 #' @encoding UTF-8
 #'

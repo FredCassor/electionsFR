@@ -3,7 +3,7 @@
 \docType{data}
 \name{ressources}
 \alias{ressources}
-\title{ressources}
+\title{ressources (dataset)}
 \format{
 A data frame with 30 columns. Each row represents a single dataset:
 \describe{

@@ -24,6 +24,7 @@ usethis::use_r("utils")
 usethis::use_data_raw("ressources")
 
 usethis::use_version()
+usethis::use_dev_version()
 # Ajout des fonctions dans R/
 usethis::use_r("get_ressources")
 usethis::use_r("get_presidentielle")

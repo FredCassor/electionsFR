@@ -1,4 +1,4 @@
-#' ressources
+#' ressources (dataset)
 #'
 #' The data found in the French Ministry of the Interior's public data archive datagouv.
 #'
