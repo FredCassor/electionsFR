@@ -1,5 +1,5 @@
 
-#' Download and clean the datasets ressources of MI
+#' R function for downloading and cleaning the datasets ressources of MI
 #'
 #' @param encoding Data original encoding (defaults to 'UTF-8')
 #'
@@ -8,7 +8,14 @@
 #' @import dplyr
 #' @importFrom utils download.file
 #' @importFrom rlang .data
-# @importFrom stringr str_extract
+#' @importFrom stringr str_extract
+#' @export
+#'
+#' @encoding UTF-8
+#' @examples
+#' \dontrun{
+#' x = download_ressources()
+#' }
 download_ressources = function(encoding = "UTF-8") {
 
    # URL
