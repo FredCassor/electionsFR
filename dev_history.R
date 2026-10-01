@@ -39,6 +39,11 @@ usethis::use_test("get_presidentielle")
 
 usethis::use_r("get_legislatives")
 usethis::use_r("get_municipales")
+usethis::use_r("get_europeennes")
+usethis::use_r("get_regionales")
+usethis::use_r("get_departementales")
+usethis::use_r("get_cantonales")
+usethis::use_r("get_senatoriales")
 
 # Mise à jour du dataset ressources du MI
 file.copy(file.path(tempdir(), "datasets-resources.csv"), file.path("data-raw/datasets-resources.csv"),

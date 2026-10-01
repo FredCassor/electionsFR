@@ -40,8 +40,8 @@ get_municipales <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
    df = x %>%
       dplyr::mutate(dataset_title = stringi::stri_trans_general(
          .data$dataset.title, "Latin-ASCII")) %>%
-      dplyr::filter(grepl("elections municipales", .data$dataset_title,
-                          ignore.case = TRUE)) %>%
+      dplyr::filter(grepl("elections municipales|elections metropolitaines",
+                          .data$dataset_title, ignore.case = TRUE)) %>%
       dplyr::filter(.data$annee == year) %>%
       dplyr::mutate(url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/",
                                         .data$id))
