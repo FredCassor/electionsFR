@@ -5,10 +5,12 @@
 \alias{get_municipales}
 \title{Download electoral data on municipal elections}
 \usage{
-get_municipales(year, encoding = "UTF-8", exdir = ".")
+get_municipales(year, x = NULL, encoding = "UTF-8", exdir = ".")
 }
 \arguments{
 \item{year}{Election year (\code{integer}).}
+
+\item{x}{A data frame of datasets ressources (defaults to NULL)}
 
 \item{encoding}{Data original encoding (defaults to 'UTF-8')}
 

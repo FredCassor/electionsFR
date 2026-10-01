@@ -5,10 +5,12 @@
 \alias{get_presidentielle}
 \title{Download electoral data on presidential election}
 \usage{
-get_presidentielle(year, encoding = "UTF-8", exdir = ".")
+get_presidentielle(year, x = NULL, encoding = "UTF-8", exdir = ".")
 }
 \arguments{
 \item{year}{Election year (\code{integer}).}
+
+\item{x}{A data frame of datasets ressources (defaults to NULL)}
 
 \item{encoding}{Data original encoding (defaults to 'UTF-8')}
 

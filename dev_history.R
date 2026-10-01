@@ -39,3 +39,7 @@ usethis::use_test("get_presidentielle")
 
 usethis::use_r("get_legislatives")
 usethis::use_r("get_municipales")
+
+# Mise à jour du dataset ressources du MI
+file.copy(file.path(tempdir(), "datasets-resources.csv"), file.path("data-raw/datasets-resources.csv"),
+          overwrite = TRUE)

@@ -3,6 +3,7 @@
 #' The function downloads and cleans data on local municipal elections for a specific year, aggregated by many different geographical levels.
 #'
 #' @param year Election year (\code{integer}).
+#' @param x A data frame of datasets ressources (defaults to NULL)
 #' @param encoding Data original encoding (defaults to 'UTF-8')
 #' @param exdir Path to the directory
 #'
@@ -20,7 +21,7 @@
 #' \dontrun{
 #' get_municipales(2008)
 #' }
-get_municipales <- function(year, encoding = "UTF-8", exdir = "."){
+get_municipales <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
    # Test year
    test_year_municipales(year)
    # Test encoding
@@ -31,10 +32,12 @@ get_municipales <- function(year, encoding = "UTF-8", exdir = "."){
    wdir = file.path(exdir, paste("elections municipales", year))
    if (!dir.exists(wdir)) dir.create(wdir)
 
-   message("Downloading the datasets ressources...")
-   df = download_ressources(encoding = encoding)
+   if (is.null(x)) {
+      message("Downloading the data frame of datasets ressources...")
+      x = download_ressources(encoding = encoding)
+   }
 
-   df = df %>%
+   df = x %>%
       dplyr::mutate(dataset_title = stringi::stri_trans_general(
          .data$dataset.title, "Latin-ASCII")) %>%
       dplyr::filter(grepl("elections municipales", .data$dataset_title,
@@ -43,7 +46,7 @@ get_municipales <- function(year, encoding = "UTF-8", exdir = "."){
       dplyr::mutate(url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/",
                                         .data$id))
 
-   message("Downloading data...")
+   message("Downloading electoral data...")
    df %>%
       dplyr::select(x = .data$url_stable, y = url) %>%
       purrr::pwalk(\(x, y) {

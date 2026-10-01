@@ -1,17 +1,18 @@
 ## code to prepare `ressources` dataset goes here
 
-# datapath = system.file("data-raw/datasets-resources.csv", package = "electionFR")
-datapath = paste0(tempdir(), "/datasets-resources.csv")
+datapath = system.file("data-raw/datasets-resources.csv", package = "electionsFR")
+# datapath = paste0(tempdir(), "/datasets-resources.csv")
 
 if (file.exists(datapath)) {
    ressources = tryCatch(readr::read_csv2(datapath,
-                                          locale = readr::locale(encoding = "UTF-8")),
+                                          locale = readr::locale(encoding = "UTF-8"),
+                                          col_types = readr::cols()),
             error = function(e) e)
    ressources = ressources |>
    #   dplyr::mutate(.data$annee = stringr::str_extract(.data$dataset.title, "[0-9]{4}")) |>
    #   dplyr::mutate(.data$annee = readr::parse_number(.data$annee))
       dplyr::mutate(annee = stringr::str_extract(dataset.title, "[0-9]{4}")) |>
-      dplyr::mutate(annee = readr::parse_number(annee))
+      dplyr::mutate(annee = as.numeric(annee))
 }
 
 # create the file 'ressources.rda' in the data directory

@@ -5,10 +5,12 @@
 \alias{get_legislatives}
 \title{Download electoral data on general elections}
 \usage{
-get_legislatives(year, encoding = "UTF-8", exdir = ".")
+get_legislatives(year, x = NULL, encoding = "UTF-8", exdir = ".")
 }
 \arguments{
 \item{year}{Election year (\code{integer}).}
+
+\item{x}{A data frame of datasets ressources (defaults to NULL)}
 
 \item{encoding}{Data original encoding (defaults to 'UTF-8')}
 
