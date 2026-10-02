@@ -112,6 +112,12 @@ test_year_senatoriales <- function(year){
       stop("Invalid input for year. Please check the documentation and try again.")
 }
 
+# Tests election year inputs
+test_year_referendum <- function(year){
+
+   if(!is.numeric(year) | !length(year)==1 | !year %in% c(1992,2000,2005,2013))
+      stop("Invalid input for year. Please check the documentation and try again.")
+}
 
 # Tests electoral data encoding inputs
 test_encoding <- function(encoding){

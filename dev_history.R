@@ -7,9 +7,11 @@ desc::desc_set(Description = "This package offers a set of functions to easily d
 usethis::use_gpl3_license()
 # Gestion de la langue du package
 desc::desc_set(Language = "fr")
+
 # Modification de la documentation et check du package
 attachment::att_amend_desc()
 devtools::check()
+
 # Installation du controle de version du package via Git et GitHub
 usethis::use_git()
 usethis::use_github(organisation = NULL)

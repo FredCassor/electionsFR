@@ -6,6 +6,8 @@
 
 * Add `get_regionales` function for regional elections. But, some bugs are not fixed yet.
 
+* Add `get_senatoriales` and `get_referendum` functions for senate elections and referendums respectively.
+
 # electionsFR 0.0.2.9004
 
 * Add an extra CSV file in `inst/extdata` directory. This file is an extract of `datasets-resources.csv` original with only data about election.
