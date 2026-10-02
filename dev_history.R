@@ -16,11 +16,14 @@ usethis::use_github(organisation = NULL)
 # Modification du README
 usethis::use_readme_rmd()
 devtools::build_readme()
+# Journal des modifications dans le package
+usethis::use_news_md()
 # Chargement du package
 devtools::load_all()
 # Ajout d'une fonction utils.R dans R/
 usethis::use_r("utils")
 # Gestion d'un fichier data dans data-raw/
+dir.create("inst/extdata", recursive = TRUE, showWarnings = FALSE)
 usethis::use_data_raw("ressources")
 
 usethis::use_version()

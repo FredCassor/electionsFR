@@ -27,7 +27,7 @@ get_europeennes <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
    # Test external directory
    stopifnot("Invalid path for directory. Please check and try again." = identical(length(exdir), 1L))
 
-   wdir = file.path(exdir, paste("election presidentielle", year))
+   wdir = file.path(exdir, paste("europeennes", year))
    if (!dir.exists(wdir)) dir.create(wdir, recursive = TRUE)
 
    if (is.null(x)) {

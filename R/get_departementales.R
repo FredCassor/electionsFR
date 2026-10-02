@@ -1,6 +1,7 @@
 #' Download electoral data on local departmental elections
 #'
 #' The function downloads and cleans data on local departmental elections for a specific year, aggregated by many different geographical levels.
+#' `get_cantonales()` is equivalent to `get_departementales()`.
 #'
 #' @param year Election year (\code{integer}).
 #' @param x A data frame of datasets ressources (defaults to NULL)
@@ -27,7 +28,7 @@ get_departementales <- function(year, x = NULL, encoding = "UTF-8", exdir = ".")
    # Test external directory
    stopifnot("Invalid path for directory. Please check and try again." = identical(length(exdir), 1L))
 
-   wdir = file.path(exdir, paste("election departementales (cantonales)", year))
+   wdir = file.path(exdir, paste("departementales (cantonales)", year))
    if (!dir.exists(wdir)) dir.create(wdir, recursive = TRUE)
 
    if (is.null(x)) {
@@ -47,4 +48,12 @@ get_departementales <- function(year, x = NULL, encoding = "UTF-8", exdir = ".")
       )
    }
    message(sprintf("%d files downloaded on %s.\n", nrow(x), wdir))
+}
+
+
+#' @rdname get_departementales
+#' @export
+get_cantonales <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
+
+   get_departementales(year = year, x = x, encoding = encoding, exdir = exdir)
 }

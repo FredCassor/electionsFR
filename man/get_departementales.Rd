@@ -3,9 +3,12 @@
 \encoding{UTF-8}
 \name{get_departementales}
 \alias{get_departementales}
+\alias{get_cantonales}
 \title{Download electoral data on local departmental elections}
 \usage{
 get_departementales(year, x = NULL, encoding = "UTF-8", exdir = ".")
+
+get_cantonales(year, x = NULL, encoding = "UTF-8", exdir = ".")
 }
 \arguments{
 \item{year}{Election year (\code{integer}).}
@@ -21,6 +24,7 @@ None (print out the number of downloaded files)
 }
 \description{
 The function downloads and cleans data on local departmental elections for a specific year, aggregated by many different geographical levels.
+\code{get_cantonales()} is equivalent to \code{get_departementales()}.
 }
 \examples{
 \dontrun{

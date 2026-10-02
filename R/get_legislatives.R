@@ -29,7 +29,7 @@ get_legislatives <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
    # Test external directory
    stopifnot("Invalid path for directory. Please check and try again." = identical(length(exdir), 1L))
 
-   wdir = file.path(exdir, paste("elections legislatives", year))
+   wdir = file.path(exdir, paste("legislatives", year))
    if (!dir.exists(wdir)) dir.create(wdir)
 
    if (is.null(x)) {
