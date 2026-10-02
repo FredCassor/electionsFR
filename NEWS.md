@@ -2,6 +2,16 @@
 
 * Initial CRAN submission.
 
+# electionsFR 0.0.2.9005
+
+* Add `get_regionales` function for regional elections. But, some bugs are not fixed yet.
+
+# electionsFR 0.0.2.9004
+
+* Add an extra CSV file in `inst/extdata` directory. This file is an extract of `datasets-resources.csv` original with only data about election.
+
+* Minor changes in the name of directory in R functions for saving data.
+
 # electionsFR 0.0.2.9003
 
 ## New features

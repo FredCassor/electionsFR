@@ -1,7 +1,6 @@
 ## code to prepare `ressources` dataset goes here
 
 datapath = system.file("extdata/extract-datasets-resources.csv", package = "electionsFR")
-# datapath = paste0(tempdir(), "/datasets-resources.csv")
 
 if (file.exists(datapath)) {
    ressources = tryCatch(readr::read_csv2(datapath,

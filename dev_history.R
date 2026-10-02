@@ -37,17 +37,17 @@ usethis::use_package("readr")
 usethis::use_package("stringr")
 usethis::use_package("stringi")
 usethis::use_package("purrr")
-# Ajout des tests des fonctions
-usethis::use_test("get_presidentielle")
-
+# Ajout des fonctions R
 usethis::use_r("get_legislatives")
 usethis::use_r("get_municipales")
 usethis::use_r("get_europeennes")
 usethis::use_r("get_regionales")
 usethis::use_r("get_departementales")
-usethis::use_r("get_cantonales")
 usethis::use_r("get_senatoriales")
+usethis::use_r("get_referendum")
 
 # Mise à jour du dataset ressources du MI
 file.copy(file.path(tempdir(), "datasets-resources.csv"), file.path("data-raw/datasets-resources.csv"),
           overwrite = TRUE)
+
+usethis::use_build_ignore("inst/debug regionales.txt")

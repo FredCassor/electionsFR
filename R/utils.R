@@ -29,10 +29,13 @@ download_ressources = function(encoding = "UTF-8") {
    download.file(url, temp_file_name)
    message("The ressources data were downloaded on :", temp_dir)
 
-   data = suppressWarnings(readr::read_csv2(temp_file_name,
+   data = readr::read_csv2(temp_file_name,
                            locale = readr::locale(encoding = encoding),
-                           col_types = readr::cols(),
-                           progress = F))
+                           col_types = list(
+                              created_at = "T", modified = "T",
+                              filesize = "d", downloads = "d",
+                              .default = "c"
+                              ))
    data = data  %>%
       dplyr::mutate(annee = stringr::str_extract(.data$dataset.title, "[0-9]{4}"))  %>%
       dplyr::mutate(annee = readr::parse_number(.data$annee))
