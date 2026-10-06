@@ -32,18 +32,13 @@ get_legislatives <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
 
    if (is.null(x)) {
       message("Downloading the data frame of datasets resources...")
-      x = download_ressources(encoding = encoding)
+      x = download_resources(encoding = encoding)
    }
-
-   #df$dataset_title = iconv(df$dataset.title, from = encoding, to = "ASCII//TRANSLIT")
-   #df = df[grepl("elections legislatives", df$dataset_title, ignore.case = TRUE), ]
-   #df = df[df$annee == year, ]
-   #df$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", df$id)
 
    #x$dataset_title = iconv(x$dataset.title, from = encoding, to = "ASCII//TRANSLIT")
    x$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", x$id)
-   x = x[grepl("elections.*legislatives", x$dataset.slug, ignore.case = TRUE), ]
-   x = x[x$annee == year, ]
+   pattern <- paste0("elections.*legislatives.*", year)
+   x = x[grepl(pattern, x$dataset.slug, ignore.case = TRUE), ]
 
    message("Downloading electoral data...")
    #df %>%

@@ -6,7 +6,6 @@
 #' @return a data frame
 #'
 #' @import dplyr
-#' @importFrom utils download.file
 #' @importFrom httr GET write_disk stop_for_status
 #' @importFrom rlang .data
 #' @importFrom stringr str_extract
@@ -15,9 +14,9 @@
 #' @encoding UTF-8
 #' @examples
 #' \dontrun{
-#' x = download_ressources()
+#' x = download_resources()
 #' }
-download_ressources = function(encoding = "UTF-8") {
+download_resources = function(encoding = "UTF-8") {
 
    # URL
    url = "https://www.data.gouv.fr/fr/organizations/ministere-de-l-interieur/datasets-resources.csv"
@@ -27,11 +26,10 @@ download_ressources = function(encoding = "UTF-8") {
    full_file_name = basename(url)
    temp_file_name = file.path(temp_dir, basename(url))
 
-   #download.file(url, temp_file_name)
    req <- httr::GET(url,
                     httr::write_disk(temp_file_name, overwrite = TRUE))
    httr::stop_for_status(req)
-   message("The ressources data were downloaded on :", temp_dir)
+   message("The resources data were downloaded on :", temp_dir)
 
    data = readr::read_csv2(temp_file_name,
                            locale = readr::locale(encoding = encoding),

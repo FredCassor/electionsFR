@@ -22,9 +22,9 @@
 get_regionales <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
 
    # Test year
-   test_year_regionales(year)
+   #test_year_regionales(year)
    # Test encoding
-   test_encoding(encoding)
+   #test_encoding(encoding)
    # Test external directory
    stopifnot("Invalid path for directory. Please check and try again." = identical(length(exdir), 1L))
 
@@ -33,12 +33,11 @@ get_regionales <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
 
    if (is.null(x)) {
       message("Downloading the data frame of datasets resources...")
-      x = download_ressources(encoding = encoding)
+      x = download_resources(encoding = encoding)
    }
-   #x$dataset_title = iconv(x$dataset.title, from = encoding, to = "ASCII//TRANSLIT")
    x$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", x$id)
-   x = x[grepl("elections.*regionales", x$dataset.slug, ignore.case = TRUE), ]
-   x = x[x$annee == year, ]
+   pattern <- paste0("elections.*regionales.*", year)
+   x = x[grepl(pattern, x$dataset.slug, ignore.case = TRUE), ]
 
    for (i in seq_len(nrow(x))) {
    #   download.file(

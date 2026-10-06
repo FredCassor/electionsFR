@@ -9,12 +9,8 @@
 #'
 #' @return None (print out the number of downloaded files)
 #'
-#' @import dplyr
 #' @import utils
-#' @importFrom purrr pwalk
-#' @importFrom rlang .data
 #' @importFrom httr GET write_disk progress stop_for_status
-# @importFrom stringi stri_trans_general
 #' @export
 #'
 #' @encoding UTF-8
@@ -35,16 +31,13 @@ get_presidentielle <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
 
    if (is.null(x)) {
       message("Downloading the data frame of datasets resources...")
-      x = download_ressources(encoding = encoding)
+      x = download_resources(encoding = encoding)
    }
 
-   x = x %>%
-   #   dplyr::mutate(dataset_title = stringi::stri_trans_general(
-   #      .data$dataset.title, "Latin-ASCII")) %>%
-      dplyr::filter(grepl("election.*presidentielle", .data$dataset.slug)) %>%
-      dplyr::filter(.data$annee == year) %>%
-      dplyr::mutate(url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/",
-                                        .data$id))
+   #x$dataset_title = iconv(x$dataset.title, from = encoding, to = "ASCII//TRANSLIT")
+   x$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", x$id)
+   pattern <- paste0("election.*presidentielle.*", year)
+   x = x[grepl(pattern, x$dataset.slug, ignore.case = TRUE), ]
 
    message("Downloading electoral data...")
    #x %>%

@@ -32,14 +32,15 @@ get_municipales <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
 
    if (is.null(x)) {
       message("Downloading the data frame of datasets ressources...")
-      x = download_ressources(encoding = encoding)
+      x = download_resources(encoding = encoding)
    }
 
    #x$dataset_title = iconv(x$dataset.title, from = encoding, to = "ASCII//TRANSLIT")
    x$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", x$id)
-   x = x[grepl("elections.*municipales|elections.*metropolitaines",
-               x$dataset.slug, ignore.case = TRUE), ]
-   x = x[x$annee == year, ]
+   pattern <- paste(c(paste0("elections.*municipales.*", year),
+                      paste0("elections.*metropolitaines.*", year)),
+                    collapse = "|")
+   x = x[grepl(pattern, x$dataset.slug, ignore.case = TRUE), ]
 
    message("Downloading electoral data...")
    for (i in seq_len(nrow(x))) {
