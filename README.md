@@ -7,7 +7,7 @@
 
 <!-- badges: end -->
 
-The goal of electionsFR is to offer a set of functions to easily
+The main goal of electionsFR is to offer a set of functions to easily
 download and clean French electoral data from the public archive
 data-gouv.fr .
 
@@ -23,9 +23,27 @@ pak::pak("FredCassor/electionsFR")
 
 ## Examples
 
+### Year of election
+
+This table is a reminder of possible values for year of each election
+that took place in France. This may be useful when we want to download
+files on election since it depends of a specific year.
+
+| Elections | Year |
+|----|----|
+| Election présidentielle | 1995, 2002, 2007, 2012, 2017, 2022 |
+| Elections législatives | 1993, 1997, 2002, 2007, 2012, 2016, 2017, 2022, 2024, 2027 |
+| Elections européennes | 1994, 1999, 2004, 2009, 2014, 2019, 2024 |
+| Elections régionales | 1998, 2004, 2010, 2015, 2021 |
+| Elections départementales | 2015, 2021 |
+| Elections cantonales | 1992, 1994, 1998, 2001, 2004, 2008, 2011 |
+| Elections municipales | 2001, 2008, 2014, 2015, 2020, 2026 |
+| Elections sénatoriales | 1992, 1995, 1998, 2001, 2004, 2008, 2011, 2014, 2015, 2017, 2023, 2026 |
+| Référendum | 1992, 2000, 2005, 2013 |
+
 ### Presidential election data
 
-This is a basic example which shows you how to download datasets which
+This is a basic example which shows you how to download files which
 refer to the Presidential election in 2002, published by the French
 Ministry of the Interior:
 
