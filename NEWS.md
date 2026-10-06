@@ -1,6 +1,8 @@
-# electionsFR (development version)
+# electionsFR 0.1.0
 
 * Initial CRAN submission.
+
+* Remove `download.file()` in the get_*() functions, replaced by `httr::GET()` for dowloading through APIs. 
 
 # electionsFR 0.0.2.9005
 
