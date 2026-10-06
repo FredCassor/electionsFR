@@ -1,5 +1,7 @@
 # electionsFR 0.1.1
 
+* Bug fixes (filters on `get_regionales()` now works as expected). Changes filters on all other functions `get_*` to keep R functions consistent.
+
 # electionsFR 0.1.0
 
 * Initial CRAN submission.

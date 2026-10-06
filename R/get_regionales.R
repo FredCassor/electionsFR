@@ -22,9 +22,9 @@
 get_regionales <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
 
    # Test year
-   #test_year_regionales(year)
+   test_year_regionales(year)
    # Test encoding
-   #test_encoding(encoding)
+   test_encoding(encoding)
    # Test external directory
    stopifnot("Invalid path for directory. Please check and try again." = identical(length(exdir), 1L))
 
