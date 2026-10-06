@@ -11,6 +11,7 @@
 #' @return None (print out the number of downloaded files)
 #'
 #' @import utils
+#' @importFrom httr GET write_disk progress stop_for_status
 #' @export
 #'
 #' @encoding UTF-8
@@ -35,17 +36,22 @@ get_departementales <- function(year, x = NULL, encoding = "UTF-8", exdir = ".")
       message("Downloading the data frame of datasets ressources...")
       x = download_ressources(encoding = encoding)
    }
-   x$dataset_title = iconv(x$dataset.title, from = encoding, to = "ASCII//TRANSLIT")
+   #x$dataset_title = iconv(x$dataset.title, from = encoding, to = "ASCII//TRANSLIT")
    x$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", x$id)
-   x = x[grepl("elections departementales|elections cantonales",
-               x$dataset_title, ignore.case = TRUE), ]
+   x = x[grepl("elections.*departementales|elections.*cantonales",
+               x$dataset.slug, ignore.case = TRUE), ]
    x = x[x$annee == year, ]
 
    for (i in seq_len(nrow(x))) {
-      download.file(
-         url = x$url_stable[i],
-         destfile = file.path(wdir, basename(x$url[i]))
-      )
+   #   download.file(
+   #      url = x$url_stable[i],
+   #      destfile = file.path(wdir, basename(x$url[i]))
+   #   )
+      resp <- httr::GET(x$url[i],
+                        httr::write_disk(file.path(wdir, basename(x$url[i])),
+                                         overwrite = TRUE),
+                        httr::progress())
+      httr::stop_for_status(resp)
    }
    message(sprintf("%d files downloaded on %s.\n", nrow(x), wdir))
 }

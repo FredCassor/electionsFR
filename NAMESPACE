@@ -13,9 +13,14 @@ export(get_ressources)
 export(get_senatoriales)
 import(dplyr)
 import(utils)
+importFrom(httr,
+  GET,
+  progress,
+  stop_for_status,
+  write_disk
+)
 importFrom(purrr,pwalk)
 importFrom(readr,read_csv2)
 importFrom(rlang,.data)
-importFrom(stringi,stri_trans_general)
 importFrom(stringr,str_extract)
 importFrom(utils,download.file)

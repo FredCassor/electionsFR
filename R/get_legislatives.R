@@ -9,10 +9,8 @@
 #'
 #' @return None (print out the number of downloaded files)
 #'
-#' @import dplyr
 #' @import utils
-#' @importFrom purrr pwalk
-#' @importFrom rlang .data
+#' @importFrom httr GET write_disk progress stop_for_status
 #' @export
 #'
 #' @encoding UTF-8
@@ -33,7 +31,7 @@ get_legislatives <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
    if (!dir.exists(wdir)) dir.create(wdir)
 
    if (is.null(x)) {
-      message("Downloading the data frame of datasets ressources...")
+      message("Downloading the data frame of datasets resources...")
       x = download_ressources(encoding = encoding)
    }
 
@@ -42,22 +40,25 @@ get_legislatives <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
    #df = df[df$annee == year, ]
    #df$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", df$id)
 
-   df = x %>%
-      dplyr::mutate(dataset_title = stringi::stri_trans_general(
-         .data$dataset.title, "Latin-ASCII")) %>%
-      dplyr::filter(grepl("elections legislatives", .data$dataset_title,
-                          ignore.case = TRUE)) %>%
-      dplyr::filter(.data$annee == year) %>%
-      dplyr::mutate(url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/",
-                                        .data$id))
+   #x$dataset_title = iconv(x$dataset.title, from = encoding, to = "ASCII//TRANSLIT")
+   x$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", x$id)
+   x = x[grepl("elections.*legislatives", x$dataset.slug, ignore.case = TRUE), ]
+   x = x[x$annee == year, ]
 
    message("Downloading electoral data...")
-   df %>%
-      dplyr::select(x = .data$url_stable, y = url) %>%
-      purrr::pwalk(function(x, y) {
-         download.file(url = x,
-                       destfile = file.path(wdir, basename(y))
-         )
-      })
-   message(sprintf("%d files downloaded on %s.\n", nrow(df), wdir))
+   #df %>%
+   #   dplyr::select(x = .data$url_stable, y = url) %>%
+   #   purrr::pwalk(function(x, y) {
+   #      download.file(url = x,
+   #                    destfile = file.path(wdir, basename(y))
+   #      )
+   #   })
+   for (i in seq_len(nrow(x))) {
+      resp <- httr::GET(x$url[i],
+                        httr::write_disk(file.path(wdir, basename(x$url[i])),
+                                         overwrite = TRUE),
+                        httr::progress())
+      httr::stop_for_status(resp)
+   }
+   message(sprintf("%d files downloaded on %s.\n", nrow(x), wdir))
 }
