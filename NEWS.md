@@ -1,5 +1,9 @@
 # electionsFR (development version)
 
+# electionsFR 0.1.1.9000
+
+* Complete data `resources` with 2 more columns, type_scrutin and annee.
+
 # electionsFR 0.1.1
 
 * Bug fixes (filters on `get_regionales()` now works as expected). Changes filters on all other functions `get_*` to keep R functions consistent.
