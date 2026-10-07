@@ -1,4 +1,4 @@
-#' ressources (dataset)
+#' resources (dataset)
 #'
 #' The data found in the French Ministry of the Interior's public data archive datagouv.
 #'
@@ -6,7 +6,7 @@
 #' @keywords dataset
 #'
 #' @format
-#' A data frame with 30 columns. Each row represents a single dataset:
+#' A data frame with 32 columns. Each row represents a single dataset:
 #' \describe{
 #'    \item{dataset.id}{Dataset identifier}
 #'    \item{dataset.title}{Title of the dataset collection}
@@ -38,8 +38,9 @@
 #'    \item{schema_version}{}
 #'    \item{preview_url}{}
 #'    \item{extras}{}
+#'    \item{type_scrutin}{Type of election}
 #'    \item{annee}{Reference year}
 #' }
 #' @source
 #' * \url{https://www.data.gouv.fr/fr/organizations/ministere-de-l-interieur/}
-"ressources"
+"resources"

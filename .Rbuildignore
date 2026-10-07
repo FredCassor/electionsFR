@@ -6,4 +6,3 @@
 ^R/get_presidentielle$
 ^README\.Rmd$
 ^data-raw$
-^inst/debug regionales\.txt$
