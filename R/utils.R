@@ -38,14 +38,32 @@ download_resources = function(encoding = "UTF-8") {
                               filesize = "d", downloads = "d",
                               .default = "c"
                               ))
-   data = data  %>%
-      dplyr::mutate(annee = stringr::str_extract(.data$dataset.title, "[0-9]{4}"))  %>%
-      dplyr::mutate(annee = readr::parse_number(.data$annee))
-   #data$annee <- NA_character_
-   #pos_annee <- regexpr("[0-9]{4}", data$dataset.title)
-   #a_match <- pos_annee != -1  # indice des correspondances trouvées
-   #data$annee[a_match] <- regmatches(data$dataset.title[a_match], pos_annee[a_match])
-   #data$annee <- as.numeric(data$annee)
+   # function extract_pattern() -----
+   extract_pattern <- function(x, pattern) {
+      if (is.na(x))
+         return(NA_character_)
+      match <- regexpr(pattern, x)
+      if (match == -1)
+         return(NA_character_)
+      regmatches(x, match)
+   }
+   type_scrutin <- vapply(
+      data$dataset.slug,
+      extract_pattern,
+      character(1),
+      pattern = "legislatives|presidentielle|europeennes|municipales|metropolitaines|departementales|cantonales|regionales|referendum|senatoriales",
+      USE.NAMES = FALSE
+   )
+   # type_scrutin ----
+   type_scrutin[grepl("elections.*metropole.*lyon", data$dataset.slug)] <- "metropolitaines"
+   type_scrutin[grepl("election.*legislative.*partielle", data$dataset.slug)] <- "legislatives"
+   data$type_scrutin <- type_scrutin
+   # annee ----
+   annee <- vapply(data$dataset.slug, extract_pattern, character(1),
+                   pattern = "[0-9]{4}", USE.NAMES = FALSE)
+   annee <- as.numeric(annee)
+   annee[annee < 1992 | annee > 3000] <- NA_integer_
+   data$annee <- annee
    data
 }
 
