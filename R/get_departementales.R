@@ -37,22 +37,24 @@ get_departementales <- function(year, x = NULL, encoding = "UTF-8", exdir = ".")
       x = download_resources(encoding = encoding)
    }
    #x$dataset_title = iconv(x$dataset.title, from = encoding, to = "ASCII//TRANSLIT")
-   x$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", x$id)
+   #x$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", x$id)
    pattern <- paste(c(paste0("elections.*departementales.*", year),
                       paste0("elections.*cantonales.*", year)),
                     collapse = "|")
    x = x[grepl(pattern, x$dataset.slug, ignore.case = TRUE), ]
 
+   message("Downloading electoral data...")
    for (i in seq_len(nrow(x))) {
    #   download.file(
    #      url = x$url_stable[i],
    #      destfile = file.path(wdir, basename(x$url[i]))
    #   )
-      resp <- httr::GET(x$url[i],
-                        httr::write_disk(file.path(wdir, basename(x$url[i])),
-                                         overwrite = TRUE),
-                        httr::progress())
-      httr::stop_for_status(resp)
+      download_one(x$url[i], file.path(wdir, basename(x$url[i])))
+   #   resp <- httr::GET(x$url[i],
+   #                     httr::write_disk(file.path(wdir, basename(x$url[i])),
+   #                                      overwrite = TRUE),
+   #                     httr::progress())
+   #   httr::stop_for_status(resp)
    }
    message(sprintf("%d files downloaded on %s.\n", nrow(x), wdir))
 }

@@ -36,7 +36,7 @@ get_legislatives <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
    }
 
    #x$dataset_title = iconv(x$dataset.title, from = encoding, to = "ASCII//TRANSLIT")
-   x$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", x$id)
+   #x$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", x$id)
    pattern <- paste0("elections.*legislatives.*", year)
    x = x[grepl(pattern, x$dataset.slug, ignore.case = TRUE), ]
 
@@ -49,11 +49,12 @@ get_legislatives <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
    #      )
    #   })
    for (i in seq_len(nrow(x))) {
-      resp <- httr::GET(x$url[i],
-                        httr::write_disk(file.path(wdir, basename(x$url[i])),
-                                         overwrite = TRUE),
-                        httr::progress())
-      httr::stop_for_status(resp)
+      download_one(x$url[i], file.path(wdir, basename(x$url[i])))
+   #   resp <- httr::GET(x$url[i],
+   #                     httr::write_disk(file.path(wdir, basename(x$url[i])),
+   #                                      overwrite = TRUE),
+   #                     httr::progress())
+   #   httr::stop_for_status(resp)
    }
    message(sprintf("%d files downloaded on %s.\n", nrow(x), wdir))
 }

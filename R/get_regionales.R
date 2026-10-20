@@ -35,20 +35,22 @@ get_regionales <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
       message("Downloading the data frame of datasets resources...")
       x = download_resources(encoding = encoding)
    }
-   x$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", x$id)
+   #x$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", x$id)
    pattern <- paste0("elections.*regionales.*", year)
    x = x[grepl(pattern, x$dataset.slug, ignore.case = TRUE), ]
 
+   message("Downloading electoral data...")
    for (i in seq_len(nrow(x))) {
    #   download.file(
    #      url = x$url_stable[i],
    #      destfile = file.path(wdir, basename(x$url[i]))
    #   )
-      resp <- httr::GET(x$url[i],
-                        httr::write_disk(file.path(wdir, basename(x$url[i])),
-                                         overwrite = TRUE),
-                        httr::progress())
-      httr::stop_for_status(resp)
+      download_one(x$url[i], file.path(wdir, basename(x$url[i])))
+   #   resp <- httr::GET(x$url[i],
+   #                     httr::write_disk(file.path(wdir, basename(x$url[i])),
+   #                                      overwrite = TRUE),
+   #                     httr::progress())
+   #   httr::stop_for_status(resp)
    }
    message(sprintf("%d files downloaded on %s.\n", nrow(x), wdir))
 }
