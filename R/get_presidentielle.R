@@ -13,6 +13,17 @@
 #' @importFrom httr GET write_disk progress stop_for_status
 #' @export
 #'
+#' @details
+#' Valid values for year input are 1995, 2002, 2007, 2012, 2017, 2022 (every 5 years).
+#' The President of the Republic has been elected by direct universal suffrage
+#' since 1962 for a five-year term of office. The election is held under a
+#' two-round majority voting system. To be elected in the first round, a candidate
+#' must secure an absolute majority of the votes cast. Otherwise, a second round
+#' is held between the two candidates who received the most votes in the first round.
+#' The Ministry of the Interior’s Electoral Office has released a set of files
+#' containing the presidential election results, aggregated by different
+#' geographical levels, from the polling stations to the regions.
+#'
 #' @encoding UTF-8
 #' @examples
 #' \dontrun{
@@ -27,15 +38,14 @@ get_presidentielle <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
    stopifnot("Invalid path for directory. Please check and try again." = identical(length(exdir), 1L))
 
    wdir = file.path(exdir, paste("presidentielle", year))
-   if (!dir.exists(wdir)) dir.create(wdir)
+   if (!dir.exists(wdir)) dir.create(wdir, recursive = TRUE)
 
    if (is.null(x)) {
       message("Downloading the data frame of datasets resources...")
       x = download_resources(encoding = encoding)
    }
 
-   #x$dataset_title = iconv(x$dataset.title, from = encoding, to = "ASCII//TRANSLIT")
-   x$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", x$id)
+   #x$url_stable = paste0("https://www.data.gouv.fr/api/1/datasets/r/", x$id)
    pattern <- paste0("election.*presidentielle.*", year)
    x = x[grepl(pattern, x$dataset.slug, ignore.case = TRUE), ]
 
@@ -47,11 +57,12 @@ get_presidentielle <- function(year, x = NULL, encoding = "UTF-8", exdir = "."){
    #                    destfile = file.path(wdir, basename(y)), mode = "wb")
    #   })
    for (i in seq_len(nrow(x))) {
-      resp <- httr::GET(x$url[i],
-                       httr::write_disk(file.path(wdir, basename(x$url[i])), overwrite = TRUE),
-                       httr::progress()
-                       )
-      httr::stop_for_status(resp)
+      download_one(x$url[i], file.path(wdir, basename(x$url[i])))
+   #   resp <- httr::GET(x$url[i],
+   #                    httr::write_disk(file.path(wdir, basename(x$url[i])), overwrite = TRUE),
+   #                    httr::progress()
+   #                    )
+   #   httr::stop_for_status(resp)
    }
    message(sprintf("%d files downloaded on %s.\n", nrow(x), wdir))
 }

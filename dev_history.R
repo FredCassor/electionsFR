@@ -18,6 +18,7 @@ usethis::use_github(organisation = NULL)
 # Modification du README
 usethis::use_readme_rmd()
 devtools::build_readme()
+
 # Journal des modifications dans le package
 usethis::use_news_md()
 # Chargement du package
@@ -50,4 +51,18 @@ usethis::use_r("get_referendum")
 file.copy(file.path(tempdir(), "datasets-resources.csv"), file.path("data-raw/datasets-resources.csv"),
           overwrite = TRUE)
 
-usethis::use_build_ignore("inst/debug regionales.txt")
+# Création de tests/testthat/ et configuration de DESCRIPTION
+usethis::use_testthat(edition = 3)
+# Ajout des tests unitaires des fonctions R
+usethis::use_test("utils")
+usethis::use_test("get_presidentielle")
+usethis::use_test("get_legislatives")
+
+# Exécution de tests unitaires
+devtools::test()
+
+# Ajout d'un badge dans README.Rmd du cycle de vie du package
+usethis::use_lifecycle_badge("experimental")   #experimental, stable
+# Ajout d'un badge dans README.Rmd du statut du R CMD Check
+usethis::use_github_action("check-standard")
+usethis::use_github_action("test-coverage")

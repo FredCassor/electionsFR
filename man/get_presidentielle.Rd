@@ -22,6 +22,17 @@ None (print out the number of downloaded files)
 \description{
 The function downloads and cleans data on presidential election for a specific year, aggregated by many different geographical levels.
 }
+\details{
+Valid values for year input are 1995, 2002, 2007, 2012, 2017, 2022 (every 5 years).
+The President of the Republic has been elected by direct universal suffrage
+since 1962 for a five-year term of office. The election is held under a
+two-round majority voting system. To be elected in the first round, a candidate
+must secure an absolute majority of the votes cast. Otherwise, a second round
+is held between the two candidates who received the most votes in the first round.
+The Ministry of the Interior’s Electoral Office has released a set of files
+containing the presidential election results, aggregated by different
+geographical levels, from the polling stations to the regions.
+}
 \examples{
 \dontrun{
 get_presidentielle(2002)

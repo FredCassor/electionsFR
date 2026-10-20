@@ -11,7 +11,7 @@ download_resources(encoding = "UTF-8")
 \item{encoding}{Data original encoding (defaults to 'UTF-8')}
 }
 \value{
-a data frame
+a \code{data.frame}
 }
 \description{
 R function for downloading and cleaning the datasets ressources of MI

@@ -5,7 +5,14 @@
 
 <!-- badges: start -->
 
+[![Lifecycle:
+experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![R-CMD-check](https://github.com/FredCassor/electionFR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/FredCassor/electionFR/actions/workflows/R-CMD-check.yaml)
+[![Codecov test
+coverage](https://codecov.io/gh/FredCassor/electionFR/graph/badge.svg)](https://app.codecov.io/gh/FredCassor/electionFR)
 <!-- badges: end -->
+
+## Overview
 
 The main goal of electionsFR is to offer a set of functions to easily
 download and clean French electoral data from the public archive
@@ -21,7 +28,7 @@ You can install the development version of electionsFR from
 pak::pak("FredCassor/electionsFR")
 ```
 
-## Examples
+## Usages
 
 ### Year of election
 
